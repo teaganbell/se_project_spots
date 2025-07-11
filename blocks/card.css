@@ -1,9 +1,16 @@
+.card {
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
 .card__image {
   height: 413px;
   width: 100%;
   object-fit: cover;
   display: block;
   border-radius: 8px;
+  margin-bottom: 12px;
 }
 
 .card__content {
@@ -17,6 +24,11 @@
   font-weight: 500;
   font-size: 20px;
   line-height: 120%;
+  max-width: 353px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 0;
 }
 
 .card__like-btn {
@@ -30,10 +42,15 @@
 
 .card__like-btn :hover {
   opacity: 100%;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 627px) {
   .card__image {
     height: 288px;
+  }
+
+  .card__title {
+    max-width: 235px;
   }
 }
