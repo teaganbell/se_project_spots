@@ -17,3 +17,7 @@ A website where you can upload photos with captions to your personal profile. Th
 This webpage is deployed to GitHub pages
 
 - Deployment Link: https://github.com/teaganbell/se_project_spots
+
+## Project Video
+
+- https://drive.google.com/file/d/1E8OaCpqO9Ka26eFgmwL3FRJ25Izny7g-/view?usp=sharing
