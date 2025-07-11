@@ -41,6 +41,15 @@
 
 .profile__edit_btn {
   margin-top: auto;
+  font-family: Poppins;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 16px;
+  border: none;
+}
+
+.profile__edit_btn :hover {
+  opacity: 70%;
 }
 
 .profile__add-btn {
@@ -54,11 +63,6 @@
   font-size: 16px;
   line-height: 100%;
   color: #fcf5e5;
-}
-
-.profile__add-btn :hover {
-  background-color: #212121;
-  opacity: 80%;
 }
 
 @media screen and (max-width: 627px) {
