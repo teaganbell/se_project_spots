@@ -63,7 +63,7 @@
   opacity: 1;
 }
 
-.profile__add-btn {
+.profile__new-post-btn {
   margin-left: auto;
   background-color: #212121;
   border-radius: 8px;
@@ -80,7 +80,7 @@
   cursor: pointer;
 }
 
-.profile__add-btn:hover {
+.profile__new-post-btn:hover {
   opacity: 0.8;
 }
 
@@ -117,7 +117,7 @@
     align-items: center;
   }
 
-  .profile__add-btn {
+  .profile__new-post-btn {
     margin: 0 auto;
     max-width: 288px;
     width: 100%;
