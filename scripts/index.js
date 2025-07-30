@@ -1,3 +1,30 @@
+const initialCards = [
+  {
+    name: "Bowling",
+    link: "https://unsplash.com/photos/bowling-arena-IoBCIosXkH8",
+  },
+  {
+    name: "Highway",
+    link: "https://unsplash.com/photos/timelapse-photography-of-vehicles-at-night-GAVSpEx6ooc",
+  },
+  {
+    name: "Concert",
+    link: "https://unsplash.com/photos/crowd-at-music-festival-silhouette-making-noise-having-fun-Vg77z--e3KA",
+  },
+  {
+    name: "Ballerinas",
+    link: "https://unsplash.com/photos/man-and-woman-dancing-on-street-during-night-time-ETpTz0rSIdU",
+  },
+  {
+    name: "Carnival",
+    link: "https://unsplash.com/photos/ferris-wheel-during-night-MSgFReNI_PA",
+  },
+  {
+    name: "Fire",
+    link: "https://unsplash.com/photos/a-fire-is-lit-in-a-dark-room-VLHocpHATVo",
+  },
+];
+
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
@@ -66,3 +93,8 @@ function openModal(modal) {
 function closeModal(modal) {
   modal.classList.remove("modal_is-opened");
 }
+
+initialCards.forEach(function (item) {
+  console.log(item.name);
+  console.log(item.link);
+});
