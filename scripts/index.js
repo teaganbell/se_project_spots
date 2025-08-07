@@ -1,31 +1,32 @@
 const initialCards = [
+  /* This image is shown in figma for sprint 5 as an example with a landscape orientation. */
   {
     name: "Golden Gate Bridge",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
   },
   {
-    name: "Bowling",
-    link: "https://unsplash.com/photos/bowling-arena-IoBCIosXkH8",
+    name: "Val Thorens",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
   },
   {
-    name: "Highway",
-    link: "https://unsplash.com/photos/timelapse-photography-of-vehicles-at-night-GAVSpEx6ooc",
+    name: "Restaurant terrace",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
   },
   {
-    name: "Concert",
-    link: "https://unsplash.com/photos/crowd-at-music-festival-silhouette-making-noise-having-fun-Vg77z--e3KA",
+    name: "An outdoor cafe",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
   },
   {
-    name: "Ballerinas",
-    link: "https://unsplash.com/photos/man-and-woman-dancing-on-street-during-night-time-ETpTz0rSIdU",
+    name: "A very long bridge, over the forest and through the trees",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
   },
   {
-    name: "Carnival",
-    link: "https://unsplash.com/photos/ferris-wheel-during-night-MSgFReNI_PA",
+    name: "Tunnel with morning light",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
   },
   {
-    name: "Fire",
-    link: "https://unsplash.com/photos/a-fire-is-lit-in-a-dark-room-VLHocpHATVo",
+    name: "Mountain house",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
   },
 ];
 
@@ -50,7 +51,7 @@ const newPostCaptionInput = newPostModal.querySelector("#card-caption-input");
 const profileNameEl = document.querySelector(".profile__name");
 const profileDescriptionEl = document.querySelector(".profile__description");
 
-const previewModal = document.querySelector("preview-modal");
+const previewModal = document.querySelector("#preview-modal");
 const previewModalCloseBtn = previewModal.querySelector(".modal__close-btn");
 const previewModalImage = previewModal.querySelector(".modal__image");
 const previewModalCaption = previewModal.querySelector(".modal__caption");
