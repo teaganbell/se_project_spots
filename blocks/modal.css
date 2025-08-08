@@ -153,13 +153,13 @@
   color: white;
   background-color: #212121;
   border-radius: 8px;
-  text-align: center;
+  text-align: left;
   font-size: 20px;
   font-weight: 400;
   line-height: 120%;
-  width: 198px;
-  height: 24px;
+  display: inline-block;
   padding: 4px 8px;
+  /* width and height removed to allow auto-fit */
 }
 
 @media screen and (max-width: 480px) {

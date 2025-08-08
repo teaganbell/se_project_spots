@@ -1,5 +1,4 @@
 const initialCards = [
-  /* This image is shown in figma for sprint 5 as an example with a landscape orientation. */
   {
     name: "Golden Gate Bridge",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
@@ -33,7 +32,7 @@ const initialCards = [
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
-const editProfileForm = editProfileModal.querySelector(".modal__form");
+const editProfileForm = document.forms["edit-profile-form"];
 const editProfileNameInput = editProfileModal.querySelector(
   "#profile-name-input"
 );
@@ -44,7 +43,7 @@ const editProfileDescriptionInput = editProfileModal.querySelector(
 const newPostBtn = document.querySelector(".profile__new-post-btn");
 const newPostModal = document.querySelector("#new-post-modal");
 const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
-const newPostProfileForm = newPostModal.querySelector(".modal__form");
+const newPostProfileForm = document.forms["new-post-form"];
 const newPostImageInput = newPostModal.querySelector("#card-image-input");
 const newPostCaptionInput = newPostModal.querySelector("#card-caption-input");
 
@@ -72,7 +71,7 @@ function getCardElement(data) {
 
   const cardLikeBtn = cardElement.querySelector(".card__like-btn");
   cardLikeBtn.addEventListener("click", () => {
-    cardLikeBtn.classList.toggle(".card__like-btn_active");
+    cardLikeBtn.classList.toggle("card__like-btn_active");
   });
 
   const cardDeleteBtn = cardElement.querySelector(".card__delete-btn");
@@ -122,11 +121,11 @@ editProfileCloseBtn.addEventListener("click", function () {
 });
 
 newPostBtn.addEventListener("click", function () {
-  newPostModal.classList.add("modal_is-opened");
+  openModal(newPostModal);
 });
 
 newPostCloseBtn.addEventListener("click", function () {
-  newPostModal.classList.remove("modal_is-opened");
+  closeModal(newPostModal);
 });
 
 newPostProfileForm.addEventListener("submit", function (evt) {
@@ -140,7 +139,10 @@ newPostProfileForm.addEventListener("submit", function (evt) {
   const cardElement = getCardElement(inputValues);
   cardsList.prepend(cardElement);
 
-  newPostModal.classList.remove("modal_is-opened");
+  newPostCaptionInput.value = "";
+  newPostImageInput.value = "";
+
+  closeModal(newPostModal);
 });
 
 initialCards.forEach(function (item) {

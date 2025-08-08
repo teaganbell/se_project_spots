@@ -32,13 +32,16 @@
   margin: 0;
 }
 
+.card__footer {
+  display: flex;
+  justify-content: space-between;
+}
+
 .card__delete-btn {
   width: 32px;
   height: 32px;
   position: absolute;
   background: url("../images/delete.svg") center no-repeat;
-  background-color: #000000;
-  opacity: 30%;
   border-radius: 50%;
   top: 10px;
   right: 10px;
@@ -47,7 +50,7 @@
 }
 
 .card__delete-btn:hover {
-  background-color: #ff6565;
+  background-image: url("../images/deleted.svg");
   opacity: 100%;
 }
 
