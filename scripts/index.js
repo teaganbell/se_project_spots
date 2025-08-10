@@ -139,8 +139,7 @@ newPostProfileForm.addEventListener("submit", function (evt) {
   const cardElement = getCardElement(inputValues);
   cardsList.prepend(cardElement);
 
-  newPostCaptionInput.value = "";
-  newPostImageInput.value = "";
+  evt.target.reset();
 
   closeModal(newPostModal);
 });

@@ -71,7 +71,7 @@
 }
 
 .card__like-btn_active {
-  background-image: url("../images/liked.svg");
+  background-image: url(../images/liked.png);
   opacity: 1;
 }
 
