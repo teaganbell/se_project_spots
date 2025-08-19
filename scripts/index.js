@@ -6,15 +6,16 @@ document.querySelectorAll(".modal").forEach((modal) => {
     }
   });
 });
-// Close modal on Escape key
-document.addEventListener("keydown", function (evt) {
+
+// Escape key handler for modals
+function handleEscClose(evt) {
   if (evt.key === "Escape") {
     const openedModal = document.querySelector(".modal_is-opened");
     if (openedModal) {
       closeModal(openedModal);
     }
   }
-});
+}
 const initialCards = [
   {
     name: "Golden Gate Bridge",
@@ -108,10 +109,12 @@ function getCardElement(data) {
 
 function openModal(modal) {
   modal.classList.add("modal_is-opened");
+  document.addEventListener("keydown", handleEscClose);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_is-opened");
+  document.removeEventListener("keydown", handleEscClose);
 }
 
 previewModalCloseBtn.addEventListener("click", function () {
