@@ -1,3 +1,20 @@
+// Close modal when clicking outside the modal form (on overlay)
+document.querySelectorAll(".modal").forEach((modal) => {
+  modal.addEventListener("mousedown", function (evt) {
+    if (evt.target === modal) {
+      closeModal(modal);
+    }
+  });
+});
+// Close modal on Escape key
+document.addEventListener("keydown", function (evt) {
+  if (evt.key === "Escape") {
+    const openedModal = document.querySelector(".modal_is-opened");
+    if (openedModal) {
+      closeModal(openedModal);
+    }
+  }
+});
 const initialCards = [
   {
     name: "Golden Gate Bridge",
@@ -46,7 +63,7 @@ const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
 const newPostProfileForm = document.forms["new-post-form"];
 const newPostImageInput = newPostModal.querySelector("#card-image-input");
 const newPostCaptionInput = newPostModal.querySelector("#card-caption-input");
-
+const cardSaveBtn = newPostModal.querySelector(".modal__save-btn");
 const profileNameEl = document.querySelector(".profile__name");
 const profileDescriptionEl = document.querySelector(".profile__description");
 
@@ -141,7 +158,8 @@ newPostProfileForm.addEventListener("submit", function (evt) {
 
   evt.target.reset();
 
-  closeModal(newPostModal);
+  // Re-validate and disable button using settings
+  disableButton(cardSaveBtn, settings);
 });
 
 initialCards.forEach(function (item) {
