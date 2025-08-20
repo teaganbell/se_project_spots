@@ -52,6 +52,7 @@
 .card__delete-btn:hover {
   background-image: url("../images/deleted.svg");
   opacity: 1;
+  cursor: pointer;
 }
 
 .card__like-btn {
@@ -77,6 +78,7 @@
 
 .card__like-btn_active:hover {
   opacity: 0.4;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 627px) {

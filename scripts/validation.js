@@ -57,6 +57,10 @@ const setEventListeners = (formEl, config) => {
 
   toggleButtonState(inputList, buttonElement, config);
 
+  formEl.addEventListener("reset", () => {
+    disableButton(buttonElement, config);
+  });
+
   inputList.forEach((inputEl) => {
     inputEl.addEventListener("input", function () {
       checkInputValidity(formEl, inputEl, config);
@@ -73,3 +77,9 @@ const enableValidation = (config) => {
 };
 
 enableValidation(settings);
+
+function resetValidation(formEl, inputList, config) {
+  inputList.forEach((inputEl) => {
+    hideInputError(formEl, inputEl, config);
+  });
+}

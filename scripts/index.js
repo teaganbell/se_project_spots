@@ -1,21 +1,4 @@
-// Close modal when clicking outside the modal form (on overlay)
-document.querySelectorAll(".modal").forEach((modal) => {
-  modal.addEventListener("mousedown", function (evt) {
-    if (evt.target === modal) {
-      closeModal(modal);
-    }
-  });
-});
-
-// Escape key handler for modals
-function handleEscClose(evt) {
-  if (evt.key === "Escape") {
-    const openedModal = document.querySelector(".modal_is-opened");
-    if (openedModal) {
-      closeModal(openedModal);
-    }
-  }
-}
+const modals = document.querySelectorAll(".modal");
 const initialCards = [
   {
     name: "Golden Gate Bridge",
@@ -46,7 +29,6 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
   },
 ];
-
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
@@ -57,7 +39,6 @@ const editProfileNameInput = editProfileModal.querySelector(
 const editProfileDescriptionInput = editProfileModal.querySelector(
   "#profile-description-input"
 );
-
 const newPostBtn = document.querySelector(".profile__new-post-btn");
 const newPostModal = document.querySelector("#new-post-modal");
 const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
@@ -67,16 +48,23 @@ const newPostCaptionInput = newPostModal.querySelector("#card-caption-input");
 const cardSaveBtn = newPostModal.querySelector(".modal__save-btn");
 const profileNameEl = document.querySelector(".profile__name");
 const profileDescriptionEl = document.querySelector(".profile__description");
-
 const previewModal = document.querySelector("#preview-modal");
 const previewModalCloseBtn = previewModal.querySelector(".modal__close-btn");
 const previewModalImage = previewModal.querySelector(".modal__image");
 const previewModalCaption = previewModal.querySelector(".modal__caption");
-
 const cardTemplate = document
   .querySelector("#card-template")
   .content.querySelector(".card");
 const cardsList = document.querySelector(".cards__list");
+
+function handleEscClose(evt) {
+  if (evt.key === "Escape") {
+    const openedModal = document.querySelector(".modal_is-opened");
+    if (openedModal) {
+      closeModal(openedModal);
+    }
+  }
+}
 
 function getCardElement(data) {
   const cardElement = cardTemplate.cloneNode(true);
@@ -117,16 +105,6 @@ function closeModal(modal) {
   document.removeEventListener("keydown", handleEscClose);
 }
 
-previewModalCloseBtn.addEventListener("click", function () {
-  closeModal(previewModal);
-});
-
-editProfileBtn.addEventListener("click", function () {
-  editProfileNameInput.value = profileNameEl.textContent;
-  editProfileDescriptionInput.value = profileDescriptionEl.textContent;
-  openModal(editProfileModal);
-});
-
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
   profileNameEl.textContent = editProfileNameInput.value;
@@ -134,18 +112,32 @@ function handleEditProfileSubmit(evt) {
   closeModal(editProfileModal);
 }
 
-editProfileForm.addEventListener("submit", handleEditProfileSubmit);
-
-editProfileCloseBtn.addEventListener("click", function () {
-  closeModal(editProfileModal);
+modals.forEach((modal) => {
+  modal.addEventListener("mousedown", (evt) => {
+    if (
+      evt.target === modal ||
+      evt.target.classList.contains("modal__close-btn")
+    ) {
+      closeModal(modal);
+    }
+  });
 });
+
+editProfileBtn.addEventListener("click", function () {
+  editProfileNameInput.value = profileNameEl.textContent;
+  editProfileDescriptionInput.value = profileDescriptionEl.textContent;
+  // Clear validation errors when opening the modal
+  const inputList = Array.from(
+    editProfileForm.querySelectorAll(settings.inputSelector)
+  );
+  resetValidation(editProfileForm, inputList, settings);
+  openModal(editProfileModal);
+});
+
+editProfileForm.addEventListener("submit", handleEditProfileSubmit);
 
 newPostBtn.addEventListener("click", function () {
   openModal(newPostModal);
-});
-
-newPostCloseBtn.addEventListener("click", function () {
-  closeModal(newPostModal);
 });
 
 newPostProfileForm.addEventListener("submit", function (evt) {
@@ -161,8 +153,9 @@ newPostProfileForm.addEventListener("submit", function (evt) {
 
   evt.target.reset();
 
-  // Re-validate and disable button using settings
   disableButton(cardSaveBtn, settings);
+
+  closeModal(newPostModal);
 });
 
 initialCards.forEach(function (item) {

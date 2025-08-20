@@ -140,6 +140,19 @@
   opacity: 0.8;
 }
 
+.modal__save-btn_disabled {
+  background-color: #979797;
+  color: #fff;
+  border-radius: 8px;
+  padding: 18px 32px;
+  gap: 8px;
+  opacity: 0.5;
+  cursor: not-allowed;
+  border: none;
+  pointer-events: none;
+  transition: background 0.2s, color 0.2s, opacity 0.2s;
+}
+
 .modal__error_visible {
   display: block;
   color: #ff0000;
