@@ -9,7 +9,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  visibility: hidden;
   opacity: 0;
   transition: visibility 0.3s, opacity 0.3s ease-in;
   padding: 0 10px;
@@ -194,11 +193,9 @@
 @media screen and (max-width: 480px) {
   .modal__save-btn {
     width: 100%;
-    font-size: 16px;
     max-width: none;
   }
   .modal__close-btn {
-    position: absolute;
     top: 10px;
     right: 10px;
     font-size: 16px;
@@ -215,7 +212,6 @@
   }
 
   .modal__input {
-    font-size: 16px;
     height: 48px;
     gap: 8px;
   }
