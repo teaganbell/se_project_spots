@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Johnathan Virgil" />
+    <meta name="description" content="????" />
+    <meta name="keywords" content="HTML, CSS" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <title>Spots</title>
+  </head>
+  <body class="page">
+    <div class="page__content">
+      <header class="header">
+        <img
+          class="header__logo"
+          src="<%= require('./images/Logo.svg') %>"
+          alt="Spots Logo"
+        />
+      </header>
+      <main class="content">
+        <section class="profile page__section">
+          <div class="profile__avatar-container">
+            <button class="profile__avatar-btn">
+              <img
+                class="profile__pencil-icon"
+                src="<%=require('./images/pencil-light.svg')%>"
+                alt="Pencil icon"
+              />
+            </button>
+            <img
+              class="profile__avatar"
+              src="<%=require('./images/avatar.jpg')%>"
+              alt="Bessie Coleman"
+            />
+          </div>
+          <div class="profile__column">
+            <h1 class="profile__name">Bessie Coleman</h1>
+            <p class="profile__description">Civil Aviator</p>
+            <button type="button" class="profile__edit-btn">
+              <img
+                class="profile__edit-icon"
+                src="<%=require('./images/pencil.svg')%>"
+                alt="Pencil icon"
+              />
+              Edit Profile
+            </button>
+          </div>
+          <button type="button" class="profile__add-btn">
+            <img
+              class="profile__add-icon"
+              src="<%=require('./images/plus.svg')%>"
+              alt="Plus icon"
+            />
+            New Post
+          </button>
+        </section>
+        <section class="cards page__section">
+          <ul class="cards__list"></ul>
+        </section>
+      </main>
+      <footer class="footer page__section">2023 © Spots</footer>
+      <div class="modal" id="edit-modal">
+        <div class="modal__container">
+          <button class="modal__close-btn"></button>
+          <h2 class="modal__title">Edit profile</h2>
+          <form class="modal__form" id="edit-profile-form" novalidate>
+            <label class="modal__label" for="profile-name-input">
+              Name
+              <input
+                id="profile-name-input"
+                class="modal__input"
+                name="name"
+                placeholder="Type your name"
+                type="text"
+                minlength="2"
+                maxlength="40"
+                required
+              />
+              <span id="profile-name-input-error" class="modal__error"></span>
+            </label>
+            <label class="modal__label">
+              Description
+              <input
+                id="profile-description-input"
+                class="modal__input"
+                name="description"
+                placeholder="Describe yourself"
+                type="text"
+                minlength="2"
+                maxlength="200"
+                required
+              />
+              <span
+                id="profile-description-input-error"
+                class="modal__error"
+              ></span>
+            </label>
+            <button type="submit" class="modal__submit-btn">Save</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="add-card-modal">
+      <div class="modal__container">
+        <button type="submit" class="modal__close-btn"></button>
+        <h2 class="modal__title">New post</h2>
+        <form class="modal__form" id="card-form" novalidate>
+          <label class="modal__label" for="add-card-image-link-input">
+            Image link
+            <input
+              id="add-card-image-link-input"
+              class="modal__input"
+              name="image link"
+              placeholder="Paste a link to the picture"
+              type="url"
+              required
+            />
+            <span
+              id="add-card-image-link-input-error"
+              class="modal__error"
+            ></span>
+          </label>
+          <label class="modal__label">
+            Caption
+            <input
+              id="profile-caption-input"
+              class="modal__input"
+              name="description"
+              placeholder="Type your caption"
+              type="text"
+              minlength="2"
+              maxlength="30"
+              required
+            />
+            <span id="profile-caption-input-error" class="modal__error"></span>
+          </label>
+          <button type="submit" class="modal__submit-btn">Save</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal" id="preview-modal">
+      <div class="modal__container modal__container_type_preview">
+        <button
+          type="submit"
+          class="modal__close-btn modal__close-btn_type_preview"
+        ></button>
+        <img
+          class="modal__image"
+          src="#"
+          alt=""
+          aria-label="Open picture modal"
+        />
+        <p class="modal__caption"></p>
+      </div>
+    </div>
+
+    <div class="modal" id="avatar-modal">
+      <div class="modal__container">
+        <button class="modal__close-btn"></button>
+        <h2 class="modal__title">Edit profile avatar</h2>
+        <form class="modal__form" id="edit-avatar-form" novalidate>
+          <label class="modal__label" for="profile-avatar-input">
+            Profile Picture
+            <input
+              id="profile-avatar-input"
+              class="modal__input"
+              name="avatar"
+              placeholder="Paste the link to an image"
+              required
+            />
+            <span id="profile-avatar-input-error" class="modal__error"></span>
+          </label>
+          <button type="submit" class="modal__submit-btn">Save</button>
+        </form>
+      </div>
+    </div>
+
+    <!--TODO style the modal-->
+    <div class="delete_modal" id="delete-modal">
+      <div class="modal__container">
+        <button class="modal__close-btn"></button>
+        <h2 class="modal__title">
+          Are you sure you want to delete this image?
+        </h2>
+        <form class="modal__form" id="delete-form" novalidate>
+          <button type="submit" class="modal__submit-btn">Delete</button>
+          <button type="button" class="modal__submit-btn">Cancel</button>
+          <button type="button" class="modal__close-btn"></button>
+        </form>
+      </div>
+    </div>
+
+    <template id="card-template">
+      <li class="card">
+        <button type="button" class="card__delete-btn"></button>
+        <img src="" alt="" class="card__image" />
+        <div class="card__content">
+          <h2 class="card__title"></h2>
+          <button
+            aria-label="Like card"
+            type="button"
+            class="card__like-btn"
+          ></button>
+        </div>
+      </li>
+    </template>
+  </body>
+</html>

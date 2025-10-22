@@ -1,0 +1,9 @@
+.delete_modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  width: 630px;
+  height: 172px;
+  border-radius: 8px;
+}
