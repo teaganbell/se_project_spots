@@ -17,12 +17,10 @@ import heartUrl from "../images/heart.svg";
 import likedUrl from "../images/Like-icon-liked2.png";
 import likedHoverUrl from "../images/Like-icon-liked-hover.svg";
 
-// Ensure image elements are present before assigning (fixes cases where bundle runs before DOM)
 document.addEventListener("DOMContentLoaded", () => {
   const logoImg = document.querySelector(".header__logo");
   if (logoImg) logoImg.src = logoUrl;
 
-  // Ensure local images load from the dev build output
   const avatarImg = document.querySelector(".profile__avatar");
   if (avatarImg) avatarImg.src = localAvatar;
 
@@ -199,23 +197,24 @@ const modals = document.querySelectorAll(".modal");
 
 cardForm.addEventListener("submit", handleAddCardSubmit);
 
-function onClosePress(evt) {
-  if (evt.key === "Escape") {
-    const currentModal = document.querySelector(".modal_opened");
-    closeModal(currentModal);
-  }
-}
-
 function openModal(modal) {
+  // debug: log when modals are opened to help trace unexpected opens
+  try {
+    // eslint-disable-next-line no-console
+    console.debug(
+      "openModal called for:",
+      modal && modal.id ? modal.id : modal
+    );
+    // eslint-disable-next-line no-console
+    console.trace();
+  } catch (err) {
+    // swallow logging errors in older browsers
+  }
   modal.classList.add("modal_opened");
-  document.addEventListener("keydown", onClosePress);
-  //addEscapeListener(modal);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
-  document.removeEventListener("keydown", onClosePress);
-  //removeEscapeListener(modal);
 }
 
 function handleEditFormSubmit(evt) {
@@ -277,6 +276,7 @@ function handleAddCardSubmit(evt) {
 // Avatar modal open & close handlers
 avatarModalBtn.addEventListener("click", function () {
   openModal(avatarModal);
+  resetValidation(avatarModalForm, [avatarInput], validationConfig);
 });
 
 avatarModalCloseBtn.addEventListener("click", function () {
@@ -311,13 +311,18 @@ profileEditButton.addEventListener("click", () => {
   openModal(editModal);
 });
 
+// close the edit modal
 editProfileCloseBtn.addEventListener("click", function () {
-  closeModal(editProfileModal);
+  closeModal(editModal);
 });
 
 newPostBtn.addEventListener("click", function () {
   openModal(newPostModal);
-  resetValidation(newPostForm, [newPostImageLink, newPostCaption], settings);
+  resetValidation(
+    newPostForm,
+    [newPostImageLink, newPostCaption],
+    validationConfig
+  );
 });
 
 newPostCloseBtn.addEventListener("click", function () {
@@ -325,14 +330,24 @@ newPostCloseBtn.addEventListener("click", function () {
 });
 
 function closeModalEvents(event) {
-  const openedModal = document.querySelector(".modal_is-opened");
+  const openedModal = document.querySelector(".modal_opened");
 
   if (event.type === "keydown" && event.key === "Escape" && openedModal) {
     closeModal(openedModal);
   }
 
-  if (event.type === "mousedown" && event.target.classList.contains("modal")) {
-    closeModal(event.target);
+  if (event.type === "mousedown") {
+    // backdrop click
+    if (event.target.classList.contains("modal")) {
+      closeModal(event.target);
+      return;
+    }
+
+    // close button click - find parent modal
+    if (event.target.classList.contains("modal__close-btn")) {
+      const modal = event.target.closest(".modal");
+      if (modal) closeModal(modal);
+    }
   }
 }
 
@@ -401,16 +416,27 @@ deleteForm.addEventListener("submit", (e) => {
 deleteModalCloseButton.addEventListener("click", () => closeModal(deleteModal));
 
 // backdrop/X close (match your markup)
+// single centralized modal close handling is wired above:
+// - Escape key: document-level keydown listener
+// - Backdrop & close-button: individual modal mousedown listeners
+// add mousedown listeners to each modal to handle backdrop & close-button clicks
 document.querySelectorAll(".modal").forEach((modal) => {
-  modal.addEventListener("mousedown", (evt) => {
-    if (
-      (evt.target.classList.contains("modal") &&
-        !evt.target.closest(".modal__container")) ||
-      evt.target.classList.contains("modal__close-btn")
-    ) {
-      closeModal(modal);
-    }
-  });
+  modal.addEventListener("mousedown", closeModalEvents);
 });
 
 enableValidation(validationConfig);
+
+// Defensive: ensure no modal is left open on initial load (helps catch markup or legacy script issues)
+document.addEventListener("DOMContentLoaded", () => {
+  const opened = Array.from(document.querySelectorAll(".modal_opened"));
+  if (opened.length) {
+    try {
+      // eslint-disable-next-line no-console
+      console.warn(
+        "Found modal(s) opened on load, closing them:",
+        opened.map((m) => m.id || m)
+      );
+    } catch (err) {}
+  }
+  opened.forEach((m) => m.classList.remove("modal_opened"));
+});

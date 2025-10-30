@@ -1,9 +1,124 @@
-.delete_modal {
+.modal.delete_modal {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal.delete_modal .modal__container {
+  background-color: #ffffff;
+  width: 630px;
+  height: auto;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: white;
-  width: 630px;
-  height: 172px;
+  padding: 40px 24px;
+  box-sizing: border-box;
+}
+
+.modal.delete_modal .modal__title {
+  margin: 0 0 24px 0;
+  font-family: Poppins, Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 100%;
+  color: #212121;
+  text-align: center;
+}
+
+.modal.delete_modal .modal__form {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 32px;
+  margin: 0;
+  justify-content: center;
+}
+
+.modal.delete_modal .delete_buttons {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.delete_modal .modal__submit-btn[type="submit"] {
+  background-color: #ff6565;
+  color: #000000;
+  border: none;
   border-radius: 8px;
+  padding: 18px 32px;
+  font-family: Poppins, Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.modal.delete_modal .modal__submit-btn[type="button"] {
+  background-color: white;
+  color: #212121;
+  border: 1px solid;
+  border-radius: 8px;
+  padding: 18px 32px;
+  font-family: Poppins, Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.modal.delete_modal .modal__container {
+  position: relative;
+}
+
+.modal.delete_modal .modal__close-btn {
+  position: absolute;
+  background-image: url(../images/closeButton.svg);
+  background-size: 35px 35px;
+  top: 32px;
+  right: 50px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  padding: 0;
+  background-position: center;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  margin: 0;
+}
+
+.modal.delete_modal .modal__close-btn:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.modal.delete_modal .modal__container > .modal__title + .modal__form {
+  margin-top: 8px;
+}
+
+@media screen and (max-width: 627px) {
+  .modal.delete_modal .modal__container {
+    width: 320px;
+    height: auto;
+    padding: 20px;
+  }
+
+  .modal.delete_modal .modal__title {
+    font-size: 20px;
+  }
+
+  .modal.delete_modal .modal__submit-btn[type="submit"],
+  .modal.delete_modal .modal__submit-btn[type="button"] {
+    padding: 14px 24px;
+    font-size: 16px;
+  }
 }
