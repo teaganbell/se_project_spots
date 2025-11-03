@@ -13,12 +13,18 @@ class Api {
   }
 
   getAppInfo() {
-    // TODO Call getUserInfo it in this array
-    return Promise.all([this.getInitialCards()]);
+    // Return both user info and initial cards so callers can destructure [user, cards]
+    return Promise.all([this.getUserInfo(), this.getInitialCards()]);
   }
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
+      headers: this._headers,
+    }).then(this._handleResponse);
+  }
+
+  getUserInfo() {
+    return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
     }).then(this._handleResponse);
   }
@@ -67,6 +73,7 @@ class Api {
   }
 
   changeLikeStatus(id, isLiked) {
+    // Always use the correct endpoint for like/dislike
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: isLiked ? "DELETE" : "PUT",
       headers: this._headers,

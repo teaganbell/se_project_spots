@@ -28,15 +28,11 @@
                 alt="Pencil icon"
               />
             </button>
-            <img
-              class="profile__avatar"
-              src="<%=require('./images/avatar.jpg')%>"
-              alt="Bessie Coleman"
-            />
+            <img class="profile__avatar" alt="Profile Avatar" />
           </div>
           <div class="profile__column">
-            <h1 class="profile__name">Bessie Coleman</h1>
-            <p class="profile__description">Civil Aviator</p>
+            <h1 class="profile__name"></h1>
+            <p class="profile__description"></p>
             <button type="button" class="profile__edit-btn">
               <img
                 class="profile__edit-icon"
@@ -177,18 +173,15 @@
         </form>
       </div>
     </div>
-
-    <!--TODO style the modal-->
     <div class="modal delete_modal" id="delete-modal">
       <div class="modal__container">
-        <button class="modal__close-btn"></button>
-        <h2 class="modal__title">
+        <button class="delete-modal__close-btn"></button>
+        <h2 class="modal__title delete_modal">
           Are you sure you want to delete this image?
         </h2>
         <form class="modal__form" id="delete-form" novalidate>
           <button type="submit" class="modal__submit-btn">Delete</button>
           <button type="button" class="modal__submit-btn">Cancel</button>
-          <button type="button" class="modal__close-btn"></button>
         </form>
       </div>
     </div>

@@ -1,3 +1,15 @@
+/* Style the Cancel button in the delete modal: white background, black text by default; black background, white text on hover */
+.modal.delete_modal .modal__form .modal__submit-btn[type="button"] {
+  background-color: #fff;
+  color: #212121;
+  border: 1px solid #212121;
+  transition: background 0.2s, color 0.2s;
+}
+
+.modal.delete_modal .modal__form .modal__submit-btn[type="button"]:hover {
+  background-color: #212121;
+  color: #fff;
+}
 .modal.delete_modal {
   position: fixed;
   top: 0px;
@@ -14,24 +26,13 @@
 .modal.delete_modal .modal__container {
   background-color: #ffffff;
   width: 630px;
-  height: auto;
+  height: 172px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 40px 24px;
   box-sizing: border-box;
-}
-
-.modal.delete_modal .modal__title {
-  margin: 0 0 24px 0;
-  font-family: Poppins, Arial, Helvetica, sans-serif;
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 100%;
-  color: #212121;
-  text-align: center;
 }
 
 .modal.delete_modal .modal__form {
@@ -63,46 +64,9 @@
   cursor: pointer;
 }
 
-.modal.delete_modal .modal__submit-btn[type="button"] {
-  background-color: white;
-  color: #212121;
-  border: 1px solid;
-  border-radius: 8px;
-  padding: 18px 32px;
-  font-family: Poppins, Arial, Helvetica, sans-serif;
-  font-weight: 500;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.modal.delete_modal .modal__container {
-  position: relative;
-}
-
-.modal.delete_modal .modal__close-btn {
-  position: absolute;
-  background-image: url(../images/closeButton.svg);
-  background-size: 35px 35px;
-  top: 32px;
-  right: 50px;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  padding: 0;
-  background-position: center;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  border: none;
-  margin: 0;
-}
-
 .modal.delete_modal .modal__close-btn:hover {
   opacity: 0.6;
   cursor: pointer;
-}
-
-.modal.delete_modal .modal__container > .modal__title + .modal__form {
-  margin-top: 8px;
 }
 
 @media screen and (max-width: 627px) {
