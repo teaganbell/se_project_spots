@@ -81,13 +81,12 @@
   opacity: 1;
 }
 
-/* Liked/active state: support multiple naming conventions used in JS/markup */
 .card__like-button_liked,
 .card__like-btn_liked,
 .card__like-btn.card__like-button_active,
 .card__like-btn.card__like-btn_active,
 .card__like-button.card__like-button_active {
-  background-image: url("../images/Like-icon-liked2.png");
+  background-image: url("../images/Like-icon-liked.svg");
   opacity: 1;
 }
 
@@ -96,7 +95,8 @@
 .card__like-btn.card__like-button_active:hover,
 .card__like-btn.card__like-btn_active:hover,
 .card__like-button.card__like-button_active:hover {
-  background-image: url("../images/Like-icon-liked-hover.svg");
+  background-image: url("../images/Like-icon-liked.svg");
+  opacity: 0.5;
 }
 
 @media screen and (max-width: 627px) {

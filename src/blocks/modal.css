@@ -1,6 +1,11 @@
+#preview-modal.modal_opened {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
 h2.modal__title.delete_modal {
   font-size: 24px;
 }
+
 .modal {
   font-family: Poppins, Arial, Helvetica, sans-serif;
   position: fixed;
@@ -38,29 +43,10 @@ h2.modal__title.delete_modal {
   min-width: 730px;
 }
 
-.delete-modal__close-btn {
-  position: absolute;
-  top: -10px;
-  right: -50px;
-  width: 40px;
-  height: 40px;
-  background-image: url(../images/close-icon-white.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .modal__close-btn {
   position: absolute;
-  top: 32px;
-  right: 32px;
+  top: auto;
+  right: 8px;
   width: 40px;
   height: 40px;
   background-image: url(../images/closeButton.svg);
@@ -104,6 +90,8 @@ h2.modal__title.delete_modal {
   display: block;
   margin: 0;
   border-radius: 8px;
+  position: relative;
+  height: auto;
 }
 
 .delete-modal__close-btn:hover {
@@ -112,13 +100,15 @@ h2.modal__title.delete_modal {
 }
 
 .modal__close-btn_type_preview {
-  background-image: url(../images/closeButton.svg);
-  top: -5px;
-  right: -53px;
+  background-image: url(../images/close-icon-white.svg);
+  top: 0px;
+  right: -50px;
   opacity: 1;
   outline: none;
   background-color: transparent;
   position: absolute;
+  width: 40px;
+  height: 40px;
 }
 
 .modal__close-btn_type_preview:hover {
@@ -140,21 +130,20 @@ h2.modal__title.delete_modal {
 }
 
 .modal__caption {
-  padding: 4px 8px;
   left: 0;
-  top: calc(100% + 10px);
   margin: 0;
-  position: absolute;
+  position: static;
   width: fit-content;
   background-color: #212121;
   border-radius: 8px;
   padding: 4px 8px;
-  margin: 0;
+  margin-top: 12px;
   font-family: Poppins, Arial, Helvetica, sans-serif;
-  line-height: 24px;
+  line-height: normal;
   font-size: 20px;
   text-align: left;
   color: #fff;
+  bottom: -45px;
 }
 
 .modal__form {
@@ -230,15 +219,23 @@ h2.modal__title {
   cursor: pointer;
 }
 
+.modal__submit-btn:disabled {
+  background-color: #bdbdbd;
+  color: #fff;
+  cursor: not-allowed;
+  border: none;
+  opacity: 1;
+}
+
 @media screen and (max-width: 627px) {
   #avatar-modal .modal__form .modal__submit-btn {
-    background-color: #212121 !important;
-    color: #fff !important;
-    border: none !important;
-    box-shadow: none !important;
+    background-color: #212121;
+    color: #fff;
+    border: none;
+    box-shadow: none;
   }
   .modal {
-    padding: 0 16px;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -282,6 +279,7 @@ h2.modal__title {
     align-items: center;
     max-width: fit-content;
     width: 100%;
+    flex-direction: column;
   }
 
   h2.modal__title {
@@ -298,8 +296,7 @@ h2.modal__title {
     font-size: 16px;
     font-weight: 500;
     line-height: 110%;
-    color: #212121;
-    opacity: 70%;
+    color: #212121b2;
   }
 
   .modal__submit-btn {
@@ -326,19 +323,159 @@ h2.modal__title {
   }
 
   .modal__caption {
-    font-family: Poppins, Arial, Helvetica, sans-serif;
-    font-weight: 500;
-    width: 159px;
-    padding: 4px 8px 4px 8px;
-    border-radius: 8px;
-    margin-top: 0px;
     font-size: 16px;
-    line-height: 19.2px;
+    text-align: left;
+    margin-left: 0;
   }
 }
 
 @media screen and (max-width: 320px) {
-  .modal__image {
+  .modal__container_type_preview {
+    position: relative;
+    width: 100%;
     max-width: 288px;
+    min-width: 0;
+    margin: 0 auto;
+    display: block;
+    flex-direction: unset;
+    align-items: unset;
+    justify-content: unset;
+    overflow: visible;
+    background: transparent;
+  }
+
+  .modal__image {
+    display: block;
+    width: 100%;
+    max-width: 288px;
+    height: auto;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+  }
+
+  .modal__close-btn_type_preview {
+    position: absolute;
+    top: -32px;
+    right: 0px;
+    z-index: 50;
+    pointer-events: auto;
+    width: 22.63px;
+    height: 22.63px;
+  }
+
+  .modal__caption {
+    font-size: 16px;
+  }
+
+  .modal__container {
+    width: 300px;
+    min-width: 0;
+    border-radius: 8px;
+    box-sizing: border-box;
+    height: 336px;
+  }
+
+  .modal__form {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .modal__input {
+    font-size: 16px;
+    padding: 14px 12px;
+  }
+
+  .modal__submit-btn {
+    width: 100%;
+    min-width: 0;
+    font-size: 16px;
+    padding: 16px 0;
+    border-radius: 8px;
+  }
+
+  h2.modal__title {
+    margin: 5px;
+    padding: 0;
+    margin-bottom: 20px !important;
+    text-align: center;
+    margin-top: 0;
+  }
+
+  .modal__label {
+    font-size: 15px;
+    margin-bottom: 5px;
+  }
+
+  #avatar-modal .modal__container {
+    width: 300px;
+    border-radius: 8px;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  #avatar-modal .modal__form {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    align-items: stretch;
+    margin: 0;
+  }
+
+  #avatar-modal .modal__label {
+    font-size: 15px;
+    margin-bottom: 16px;
+    color: #212121;
+    opacity: 0.7;
+  }
+
+  #avatar-modal .modal__input {
+    font-size: 16px;
+    padding: 14px 12px;
+    border-radius: 8px;
+    margin: 0 0 16px 0;
+  }
+
+  #avatar-modal .modal__submit-btn {
+    width: 100%;
+    min-width: 0;
+    font-size: 18px;
+    padding: 16px 0;
+    margin-top: 8px;
+    border-radius: 8px;
+  }
+
+  #avatar-modal h2.modal__title {
+    font-size: 24px;
+    margin-bottom: 24px;
+    font-weight: 500;
+    letter-spacing: 0;
+    color: #212121;
+    text-align: left;
+  }
+
+  #avatar-modal .modal__close-btn {
+    top: 24px;
+    right: 24px;
+    width: 32px;
+    height: 32px;
+  }
+
+  /* New Post & Edit Profile modals: distinct title font size and alignment */
+  #add-card-modal .modal__title,
+  #edit-modal .modal__title {
+    font-size: 24px;
+    text-align: left;
+    margin-bottom: 0;
+    font-weight: 500;
+    color: #212121;
+    letter-spacing: 0;
+    width: 100%;
+    line-height: 1.2;
   }
 }

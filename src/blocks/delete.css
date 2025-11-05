@@ -1,4 +1,3 @@
-/* Style the Cancel button in the delete modal: white background, black text by default; black background, white text on hover */
 .modal.delete_modal .modal__form .modal__submit-btn[type="button"] {
   background-color: #fff;
   color: #212121;
@@ -21,6 +20,25 @@
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+.delete-modal__close-btn {
+  position: absolute;
+  top: -10px;
+  right: -50px;
+  width: 40px;
+  height: 40px;
+  background-image: url(../images/close-icon-white.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal.delete_modal .modal__container {
@@ -84,5 +102,55 @@
   .modal.delete_modal .modal__submit-btn[type="button"] {
     padding: 14px 24px;
     font-size: 16px;
+  }
+
+  .modal.delete_modal .modal__form {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .modal.delete_modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .modal.delete_modal .modal__container {
+    width: 300px !important;
+    padding: 0 !important;
+    height: 208px !important;
+    margin: 0;
+    position: relative;
+    box-sizing: border-box;
+  }
+  .modal.delete_modal .modal__form {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal.delete_modal .modal__submit-btn[type="submit"],
+  .modal.delete_modal .modal__submit-btn[type="button"] {
+    width: 156px !important;
+    height: 52px !important;
+    min-width: 0;
+    box-sizing: border-box;
+    margin: 0 auto;
+    font-size: 16px !important;
+    padding: 0 !important;
+    display: block;
+  }
+  .delete-modal__close-btn {
+    display: block !important;
+    position: absolute;
+    top: -50px;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    z-index: 10;
+    opacity: 1;
   }
 }

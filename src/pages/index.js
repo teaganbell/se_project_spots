@@ -20,7 +20,7 @@ import pencilLightUrl from "../images/pencil-light.svg";
 import pencilUrl from "../images/pencil.svg";
 import plusUrl from "../images/plus.svg";
 import heartUrl from "../images/heart.svg";
-import likedUrl from "../images/Like-icon-liked2.png";
+import likedUrl from "../images/Like-icon-liked.svg";
 import likedHoverUrl from "../images/Like-icon-liked-hover.svg";
 
 document.addEventListener("DOMContentLoaded", () => {
