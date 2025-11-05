@@ -253,10 +253,12 @@ function openModal(modal) {
     console.trace();
   } catch (err) {}
   modal.classList.add("modal_opened");
+  document.addEventListener("keydown, closeModalEvents");
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", closeModalEvents);
 }
 
 function handleEditFormSubmit(evt) {
@@ -309,10 +311,10 @@ function handleAddCardSubmit(evt) {
     })
     .catch((err) => {
       console.error(err);
+      submitBtn.disabled = false;
     })
     .finally(() => {
       submitBtn.textContent = originalText;
-      submitBtn.disabled = false;
     });
 }
 
@@ -350,7 +352,6 @@ function avatarHandlerSubmit(evt) {
     .catch(console.error)
     .finally(() => {
       submitBtn.textContent = originalText;
-      submitBtn.disabled = false;
     });
 }
 
@@ -445,10 +446,10 @@ deleteForm.addEventListener("submit", (e) => {
       })
       .catch((err) => {
         console.error(err);
+        submitBtn.disabled = false;
       })
       .finally(() => {
         submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
       });
     return;
   }
