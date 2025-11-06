@@ -253,7 +253,7 @@ function openModal(modal) {
     console.trace();
   } catch (err) {}
   modal.classList.add("modal_opened");
-  document.addEventListener("keydown, closeModalEvents");
+  document.addEventListener("keydown", closeModalEvents);
 }
 
 function closeModal(modal) {
@@ -349,7 +349,10 @@ function avatarHandlerSubmit(evt) {
       }
       closeModal(avatarModal);
     })
-    .catch(console.error)
+    .catch((err) => {
+      console.error(err);
+      submitBtn.disabled = false;
+    })
     .finally(() => {
       submitBtn.textContent = originalText;
     });
@@ -403,9 +406,6 @@ function closeModalEvents(event) {
   }
 }
 
-document.addEventListener("keydown", closeModalEvents);
-
-// like status handler
 function handleLike(evt, cardId) {
   const likeBtn = evt.target.closest(".card__like-btn");
   if (!likeBtn) return;
@@ -444,21 +444,13 @@ deleteForm.addEventListener("submit", (e) => {
         selectedCardId = null;
         closeModal(deleteModal);
       })
-      .catch((err) => {
-        console.error(err);
-        submitBtn.disabled = false;
-      })
+      .catch(console.error)
       .finally(() => {
         submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
       });
     return;
   }
-
-  if (selectedCard) selectedCard.remove();
-  selectedCard = null;
-  closeModal(deleteModal);
-  submitBtn.textContent = originalText;
-  submitBtn.disabled = false;
 });
 
 deleteModalCloseButton.addEventListener("click", () => closeModal(deleteModal));
