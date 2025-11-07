@@ -1,12 +1,15 @@
 .cards {
-  padding: 20px 0 40px;
-  border-bottom: 1px solid #21212166;
+  padding-top: 20px;
+  padding-bottom: 40px;
+  justify-content: center;
+  border-bottom: 1px rgba(33, 33, 33, 0.4) solid;
 }
 
 .cards__list {
   list-style-type: none;
-  padding: 0;
-  margin: 0;
+  padding-top: 20px;
+  padding: 0px;
+  margin: 0px;
   display: grid;
   grid-template-columns: repeat(auto-fit, 413px);
   justify-content: center;
@@ -16,5 +19,10 @@
 @media screen and (max-width: 627px) {
   .cards__list {
     grid-template-columns: repeat(auto-fit, 288px);
+    row-gap: 20px;
+  }
+
+  .cards {
+    padding-bottom: 20px;
   }
 }
